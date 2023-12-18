@@ -36,56 +36,55 @@ patientSelectSex.place(x = 101, y = 92, relwidth = .25, anchor = 'w')
 labelTitle = tk.Label(text = 'Анамнез:', fg = '#eee', bg = '#333')
 labelTitle.place(relwidth = 1.0, relx = .5, rely = .206, anchor = 'c')
 
-#----------Course Select
-courseLabel = tk.Label(text = '1. Течение:')
-courseLabel.place(x = 7, y = 150, anchor = 'w')
-courseSelect = ttk.Combobox(app, values = ['бессимптомное',
-                                           'симптомное'])
-courseSelect.place(x = 11, y = 177, relwidth = .40, anchor = 'w')
+#----------Blood Select
+bloodLabel = tk.Label(text = '1. Количество эритроцитов')
+bloodLabel.place(x = 7, y = 150, anchor = 'w')
+bloodSelect = ttk.Combobox(app, values = ['< 10^9/л',
+                                           '10^9/л-3*10^12/л', '> 3*10^12/л'])
+bloodSelect.place(x = 11, y = 177, relwidth = .40, anchor = 'w')
 
 #----------Stenosis Select
-stenosisLabel = tk.Label(text = '2. Стеноз ВСА:')
+stenosisLabel = tk.Label(text = '2. Плеоцитоз:')
 stenosisLabel.place(x = 162, y = 150, anchor = 'w')
-stenosisSelect = ttk.Combobox(app, values = ['нет',
-                                             'менее 50%',
-                                             'от 50 до 70%',
-                                             'более 70%',
-                                             'окклюзия'])
+stenosisSelect = ttk.Combobox(app, values = ['0.01-0.06*10^9/л',
+                                             '0.01-0.2*10^9/л',
+                                             '0.1-0.3*10^9/л',
+                                             '1.0-2.0*10^9/л',
+                                             '2.0-5.0*10^9/л'])
 stenosisSelect.place(x = 165, y = 177, relwidth = .40, anchor = 'w')
 
-#----------Plaque Select
-plaqueLabel = tk.Label(text = '3. Бляшка:')
-plaqueLabel.place(x = 8, y = 227, anchor = 'w')
-plaqueSelect = ttk.Combobox(app, values = ['нет',
-                                           'стабильная',
-                                           'нестабильная'])
-plaqueSelect.place(x = 11, y = 254, relwidth = .40, anchor = 'w')
+#----------Protein Select
+proteinLabel = tk.Label(text = '3. Концентрация белка:')
+proteinLabel.place(x = 8, y = 227, anchor = 'w')
+proteinSelect = ttk.Combobox(app, values = ['0.16-2.88 г/л',
+                                           '0.19-21.0 г/л',
+                                           '0.21-22.0 г/л'])
+proteinSelect.place(x = 11, y = 254, relwidth = .40, anchor = 'w')
 
 #----------Hearth Select
-hearthLabel = tk.Label(text = '4. Очаг ишемии:')
+hearthLabel = tk.Label(text = '4. Уровень глюкозы:')
 hearthLabel.place(x = 162, y = 227, anchor = 'w')
-hearthSelect = ttk.Combobox(app, values = ['нет',
-                                           'менее 2,5 см',
-                                           '2,5 см',
-                                           'более 2,5 см'])
+hearthSelect = ttk.Combobox(app, values = ['4.7±1.9 ммоль/л',
+                                           '2.94±0.44 ммоль/л',
+                                           '1.38±0.58 ммоль/л'])
 hearthSelect.place(x = 165, y = 254, relwidth = .40, anchor = 'w')
 
-#----------Transformation Select
-transformationLabel = '5. Геморрагическая \n трансформация:'
-transformationLabel = tk.Label(text = transformationLabel, justify = tk.LEFT)
-transformationLabel.place(x = 7, y = 300, anchor = 'w')
-transformationSelect = ttk.Combobox(app, values = ['нет',
-                                                   'есть'])
-transformationSelect.place(x = 11, y = 331, relwidth = .40, anchor = 'w')
-
-#----------Deficit Select
-deficitLabel = '6. Неврологический \n дефицит:'
-deficitLabel = tk.Label(text = deficitLabel, justify = tk.LEFT)
-deficitLabel.place(x = 162, y = 300, anchor = 'w')
-deficitSelect = ttk.Combobox(app, values = ['нет',
-                                            'Ренкин 1-3',
-                                            'Ренкин 4-5'])
-deficitSelect.place(x = 165, y = 331, relwidth = .40, anchor = 'w')
+# #----------Transformation Select
+# transformationLabel = '5. Геморрагическая \n трансформация:'
+# transformationLabel = tk.Label(text = transformationLabel, justify = tk.LEFT)
+# transformationLabel.place(x = 7, y = 300, anchor = 'w')
+# transformationSelect = ttk.Combobox(app, values = ['нет',
+#                                                    'есть'])
+# transformationSelect.place(x = 11, y = 331, relwidth = .40, anchor = 'w')
+#
+# #----------Deficit Select
+# deficitLabel = '6. Неврологический \n дефицит:'
+# deficitLabel = tk.Label(text = deficitLabel, justify = tk.LEFT)
+# deficitLabel.place(x = 162, y = 300, anchor = 'w')
+# deficitSelect = ttk.Combobox(app, values = ['нет',
+#                                             'Ренкин 1-3',
+#                                             'Ренкин 4-5'])
+# deficitSelect.place(x = 165, y = 331, relwidth = .40, anchor = 'w')
 
 #---------------------------------------------------------Conclusion Section
 #----------Title
@@ -100,19 +99,21 @@ def clearPatientValues ():
     patientSelectSex.set('')
     
 def appAnalyse ():
-    courseVar = courseSelect.get()
+    bloodVar = bloodSelect.get()
     stenosisVar = stenosisSelect.get()
     plaqueVar = plaqueSelect.get()
     hearthVar = hearthSelect.get()
-    transformationVar = transformationSelect.get()
-    deficitVar = deficitSelect.get()
+    # transformationVar = transformationSelect.get()
+    # deficitVar = deficitSelect.get()
 
-    if courseVar == 'бессимптомное':
-       courseVar = int('1')
-    elif courseVar == 'симптомное':
-       courseVar = int('3')
-    elif courseVar == (''):
-       courseVar = str('')
+    if bloodVar == '< 10^9/л':
+       bloodVar = int('1')
+    elif bloodVar == '10^9/л-3*10^12/л':
+       bloodVar = int('3')
+    elif bloodVar == '> 3*10^12/л':
+       bloodVar = int('4')
+    elif bloodVar == (''):
+       bloodVar = str('')
 
     if stenosisVar == 'нет':
        stenosisVar = int('0')
@@ -147,25 +148,25 @@ def appAnalyse ():
     elif hearthVar == (''):
        hearthVar = str('')
 
-    if transformationVar == 'нет':
-       transformationVar = int('0')
-    elif transformationVar == 'есть':
-       transformationVar = int('15')
-    elif transformationVar == (''):
-       transformationVar = str('')
+    # if transformationVar == 'нет':
+    #    transformationVar = int('0')
+    # elif transformationVar == 'есть':
+    #    transformationVar = int('15')
+    # elif transformationVar == (''):
+    #    transformationVar = str('')
 
-    if deficitVar == 'нет':
-       deficitVar = int('0')
-    elif deficitVar == 'Ренкин 1-3':
-       deficitVar = int('2')
-    elif deficitVar == 'Ренкин 4-5':
-       deficitVar = int('15')
-    elif deficitVar == (''):
-       deficitVar = str('')
+    # if deficitVar == 'нет':
+    #    deficitVar = int('0')
+    # elif deficitVar == 'Ренкин 1-3':
+    #    deficitVar = int('2')
+    # elif deficitVar == 'Ренкин 4-5':
+    #    deficitVar = int('15')
+    # elif deficitVar == (''):
+    #    deficitVar = str('')
 
-    print(courseVar, stenosisVar, plaqueVar, hearthVar, transformationVar, deficitVar)
+    print(bloodVar, stenosisVar, plaqueVar, hearthVar)#, transformationVar, deficitVar)
 
-    SCORE = courseVar + stenosisVar + plaqueVar + hearthVar + transformationVar + deficitVar
+    SCORE = bloodVar + stenosisVar + plaqueVar + hearthVar #+ transformationVar + deficitVar
     print(SCORE)
 
     if SCORE == (''):
@@ -186,12 +187,12 @@ conclusion = tk.Label(text = conclusion, anchor = 'c', height = 10, width = 41)
 conclusion.place(relx = .012, rely = .835, anchor = 'w')
         
 def clearComboboxValues ():
-    courseSelect.set('')
+    bloodSelect.set('')
     stenosisSelect.set('')
     plaqueSelect.set('')
     hearthSelect.set('')
-    transformationSelect.set('')
-    deficitSelect.set('')
+    # transformationSelect.set('')
+    # deficitSelect.set('')
     conclusion.config(text = f'')
 
 #----------Buttons
