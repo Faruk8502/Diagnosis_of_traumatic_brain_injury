@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 
 import numpy as np
+import pandas as pd
+import csv
 
 app = tk.Tk()
 app.title('CarotidTricoder')
@@ -170,9 +172,11 @@ def clearComboboxValues():
     conclusion.config(text=f'')
 
 def ResultsSaving():
-    Row = [1, 1, 1, 1]
-    with open('document.csv', 'a') as fd:
-        fd.write(Row)
+    Row = ['1', '6']
+    with open('Database.csv', 'w', newline='') as fd:
+        writer = csv.writer(fd)
+        for row in Row:
+            writer.writerow([row])
 
 # ----------Buttons
 message_button = tk.Button(text='X', command=clearPatientValues)
